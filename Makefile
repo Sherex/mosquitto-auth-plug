@@ -127,8 +127,7 @@ OSSLINC = -I$(OPENSSLDIR)/include
 OSSLIBS = -L$(OPENSSLDIR)/lib -lcrypto
 
 CFLAGS := $(CFG_CFLAGS)
-CFLAGS += -I$(MOSQUITTO_SRC)/src/
-CFLAGS += -I$(MOSQUITTO_SRC)/lib/
+CFLAGS = -I$(MOSQUITTO_SRC)/include/
 ifneq ($(OS),Windows_NT)
 	CFLAGS += -fPIC -Wall -Werror
 endif
@@ -138,7 +137,7 @@ LDFLAGS := $(CFG_LDFLAGS)
 LDFLAGS += $(BE_LDFLAGS) -L$(MOSQUITTO_SRC)/lib/
 # LDFLAGS += -Wl,-rpath,$(../../../../pubgit/MQTT/mosquitto/lib) -lc
 # LDFLAGS += -export-dynamic
-LDADD = $(BE_LDADD) $(OSSLIBS) -lmosquitto
+LDADD = $(BE_LDADD) $(OSSLIBS) #-lmosquitto # Not needed for LDAP
 
 all: printconfig auth-plug.so np
 
