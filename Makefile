@@ -11,7 +11,7 @@ OBJS = auth-plug.o base64.o pbkdf2-check.o log.o envs.o hash.o be-psk.o backends
 BACKENDS =
 BACKENDSTR =
 
-ifneq ($(BACKEND_CDB),no)
+ifeq ($(BACKEND_CDB), yes)
 	BACKENDS += -DBE_CDB
 	BACKENDSTR += CDB
 
@@ -26,7 +26,7 @@ ifneq ($(BACKEND_CDB),no)
 	OBJS += be-cdb.o
 endif
 
-ifneq ($(BACKEND_MYSQL),no)
+ifeq ($(BACKEND_MYSQL), yes)
 	BACKENDS += -DBE_MYSQL
 	BACKENDSTR += MySQL
 
@@ -35,7 +35,7 @@ ifneq ($(BACKEND_MYSQL),no)
 	OBJS += be-mysql.o
 endif
 
-ifneq ($(BACKEND_SQLITE),no)
+ifeq ($(BACKEND_SQLITE), yes)
 	BACKENDS += -DBE_SQLITE
 	BACKENDSTR += SQLite
 
@@ -43,7 +43,7 @@ ifneq ($(BACKEND_SQLITE),no)
 	OBJS += be-sqlite.o
 endif
 
-ifneq ($(BACKEND_REDIS),no)
+ifeq ($(BACKEND_REDIS), yes)
 	BACKENDS += -DBE_REDIS
 	BACKENDSTR += Redis
 
@@ -53,7 +53,7 @@ ifneq ($(BACKEND_REDIS),no)
 	OBJS += be-redis.o
 endif
 
-ifeq ($(BACKEND_MEMCACHED),yes)
+ifeq ($(BACKEND_MEMCACHED), yes)
 	BACKENDS += -DBE_MEMCACHED
 	BACKENDSTR += Memcached
 
@@ -63,7 +63,7 @@ ifeq ($(BACKEND_MEMCACHED),yes)
 	OBJS += be-memcached.o
 endif
 
-ifneq ($(BACKEND_POSTGRES),no)
+ifeq ($(BACKEND_POSTGRES), yes)
 	BACKENDS += -DBE_POSTGRES
 	BACKENDSTR += PostgreSQL
 
@@ -72,7 +72,7 @@ ifneq ($(BACKEND_POSTGRES),no)
 	OBJS += be-postgres.o
 endif
 
-ifneq ($(BACKEND_LDAP),no)
+ifeq ($(BACKEND_LDAP), yes)
 	BACKENDS += -DBE_LDAP
 	BACKENDSTR += LDAP
 
@@ -80,7 +80,7 @@ ifneq ($(BACKEND_LDAP),no)
 	OBJS += be-ldap.o
 endif
 
-ifneq ($(BACKEND_HTTP), no)
+ifeq ($(BACKEND_HTTP), yes)
 	BACKENDS+= -DBE_HTTP
 	BACKENDSTR += HTTP
 
@@ -88,7 +88,7 @@ ifneq ($(BACKEND_HTTP), no)
 	OBJS += be-http.o
 endif
 
-ifneq ($(BACKEND_JWT), no)
+ifeq ($(BACKEND_JWT), yes)
 	BACKENDS+= -DBE_JWT
 	BACKENDSTR += JWT
 
@@ -96,7 +96,7 @@ ifneq ($(BACKEND_JWT), no)
 	OBJS += be-jwt.o
 endif
 
-ifneq ($(BACKEND_MONGO), no)
+ifeq ($(BACKEND_MONGO), yes)
 	BACKENDS+= -DBE_MONGO
 	BACKENDSTR += MongoDB
 
@@ -108,7 +108,7 @@ ifneq ($(BACKEND_MONGO), no)
 	OBJS += be-mongo.o
 endif
 
-ifneq ($(BACKEND_FILES), no)
+ifeq ($(BACKEND_FILES), yes)
 	BACKENDS+= -DBE_FILES
 	BACKENDSTR += Files
 
